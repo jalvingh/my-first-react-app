@@ -2,6 +2,8 @@ import React from "react";
 import TeamCard from "./components/TeamCard"
 import "./App.css";
 import SectionCard from "./components/SectionCard";
+import LikeCounter from "./components/LikeCounter";
+import AwesomeAnimals from "./components/AwesomeAnimals";
 
 export default class App extends React.Component {
   render() {
@@ -21,10 +23,23 @@ export default class App extends React.Component {
 
         <div className="section-header-spacer"></div>
 
+        <LikeCounter/>
+
+        <AwesomeAnimals/>
+
+
+
+
+
+
+
+
+
+
         <div className="content">
 
           <div className="section section-what-usp">
-            
+
             <SectionCard badgeTitle="Do you want to" componentTitle="Learn how to code" description="Awesome! Let’s do this together. We are here to support you in your coding journey." />
            
             <div className="component-usp-row">
