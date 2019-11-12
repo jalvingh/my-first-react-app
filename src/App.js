@@ -5,6 +5,7 @@ import SectionCard from "./components/SectionCard";
 import LikeCounter from "./components/LikeCounter";
 import AwesomeAnimals from "./components/AwesomeAnimals";
 import InfoBlock from "./components/InfoBlock";
+import Title from "./components/Title";
 
 export default class App extends React.Component {
   // define (initial) state of app
@@ -37,9 +38,12 @@ export default class App extends React.Component {
     // const {author, en } = this.state.itemData;
 
     return (
+
+
       <div>
         <div className="section-header-spacer"></div>
         <div className="content">
+
 
           <div className="section section-what-usp">
             <SectionCard badgeTitle="Starting to play with react" componentTitle="tech-quote machine" description="I'm not really sure what I'm doing..." />
@@ -52,6 +56,8 @@ export default class App extends React.Component {
 
         {/* map over data and turn it into InfoBlock components, pass data as props */}
         <div className="component-usp-row">
+        <Title content="Let's start! -->"/>
+
           { this.state.itemData.map((quote) => {
             const {author, en, imgUrl } = quote
             return <InfoBlock blockTitle = {author} blockText={en} imgUrl={imgUrl} />
