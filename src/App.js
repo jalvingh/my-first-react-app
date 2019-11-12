@@ -9,7 +9,7 @@ import InfoBlock from "./components/InfoBlock";
 export default class App extends React.Component {
   // define (initial) state of app
   state = {
-    itemData : null
+    itemData : []
   }
 
   async componentDidMount(){
@@ -21,7 +21,7 @@ export default class App extends React.Component {
     const response = await fetch("https://programming-quotes-api.herokuapp.com/quotes/random");
     const json = await response.json();
     // setState
-    this.setState({itemData : json})
+    this.setState({itemData : [...this.state.itemData, { ...json, imgUrl: `https://source.unsplash.com/random/${790 + Math.round(Math.random() * 50)}x600`}]})
 };
 
   render() {
@@ -34,7 +34,7 @@ export default class App extends React.Component {
       )
     }
     // else use the data to create infoblock posts
-    const {author, en } = this.state.itemData;
+    // const {author, en } = this.state.itemData;
 
     return (
       <div>
@@ -52,11 +52,15 @@ export default class App extends React.Component {
 
         {/* map over data and turn it into InfoBlock components, pass data as props */}
         <div className="component-usp-row">
-          <InfoBlock blockTitle = {author} blockText={en} imgUrl="https://source.unsplash.com/random/800x600"/>
+          { this.state.itemData.map((quote) => {
+            const {author, en, imgUrl } = quote
+            return <InfoBlock blockTitle = {author} blockText={en} imgUrl={imgUrl} />
+          })}
+          {/* <InfoBlock blockTitle = {author} blockText={en} imgUrl="https://source.unsplash.com/random/800x600"/> */}
         </div>
 
         <div className="component-usp-row">
-          <button> Get new quote </button>
+          <button onClick={this.getQuote}> Get new quote </button>
         </div>
 
         
