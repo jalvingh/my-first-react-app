@@ -4,139 +4,63 @@ import "./App.css";
 import SectionCard from "./components/SectionCard";
 import LikeCounter from "./components/LikeCounter";
 import AwesomeAnimals from "./components/AwesomeAnimals";
+import InfoBlock from "./components/InfoBlock";
 
 export default class App extends React.Component {
+  // define (initial) state of app
+  state = {
+    itemData : null
+  }
+
+  async componentDidMount(){
+    // fetch data
+    const response = await fetch("https://programming-quotes-api.herokuapp.com/quotes/random");
+    const json = await response.json();
+    // setState
+    this.setState({itemData : json})
+  }
+
+
   render() {
+    // create an early exit if we dont have any data yet
+    if (this.state.itemData == null){
+      return(
+        <div className="section section-what-usp">
+          <InfoBlock blockTitle = "We kunnen nu even niets laten zien" blockText = "probeer het later opnieuw" imgUrl = "https://images.pexels.com/photos/1518754/pexels-photo-1518754.jpeg?cs=srgb&dl=man-drinking-on-white-plastic-cup-while-sitting-1518754.jpg&fm=jpg" />
+        </div>
+      )
+    }
+    // else use the data to create infoblock posts
+    const {author, en } = this.state.itemData;
+
     return (
       <div>
-        <header id="header" className="section-header scroll">
-          <a href="./">
-            <img className="icon" src="https://learntocodetogether.nl/assets/icon.svg" />
-          </a>
-          <a href="https://www.meetup.com/Learning-to-Code-Amsterdam/">
-            <img className="meetup-icon" src="https://learntocodetogether.nl/assets/meetup-icon.svg" />
-          </a>
-          <nav>
-            <a href="/courses.html">Our Courses</a>
-          </nav>
-        </header>
-
         <div className="section-header-spacer"></div>
-
-        <LikeCounter/>
-
-        <AwesomeAnimals/>
-
-
-
-
-
-
-
-
-
-
         <div className="content">
 
           <div className="section section-what-usp">
-
-            <SectionCard badgeTitle="Do you want to" componentTitle="Learn how to code" description="Awesome! Let’s do this together. We are here to support you in your coding journey." />
-           
-            <div className="component-usp-row">
-              <TeamCard imgUrl="https://learntocodetogether.nl/assets/team.svg" subTitle="Get help from experienced developers"/>
-              <TeamCard imgUrl = "https://learntocodetogether.nl/assets/community.svg" subTitle = "Learn &amp; share with our community" />
-              <TeamCard imgUrl = "https://learntocodetogether.nl/assets/personal-speed.svg" subTitle = "Personal &amp; at your own speed" />
-            </div>
-
+            <SectionCard badgeTitle="Starting to play with react" componentTitle="tech-quote machine" description="I'm not really sure what I'm doing..." />
           </div>
 
           <div className="section-line">
             <div className="line "></div>
           </div>
-
-          <div className="section section-courses-usp">
-            <div className="component-section-header">
-
-              <div className="title-badge">
-                <div className="title-badge-title">Courses</div>
-              </div>
-
-              <h2>
-                <div className="component-title ">
-                  Our Courses
-                </div>
-              </h2>
-
-              <div className="description">
-                We have created courses to help you learn, with easy to follow steps and some sparks of fun!
-              </div>
-
-            </div>
-
-            <div className="component-usp-row">
-              <TeamCard imgUrl = "https://learntocodetogether.nl/assets/expand-horizon.svg" subTitle = "Learn new skills and expand your horizon" />
-              <TeamCard imgUrl="https://learntocodetogether.nl/assets/developers.svg" subTitle="Follow courses created by experienced developers" />
-              <TeamCard imgUrl="https://learntocodetogether.nl/assets/step-by-step.svg" subTitle="Fun, hands on and easy to follow" />
-            </div>
-
-          </div>
-
-          <div className="section-line">
-            <div className="line "></div>
-          </div>
-
-          <div className="section section-why-usp">
-            <div className="component-section-header">
-
-              <div className="title-badge">
-                <div className="title-badge-title">Why?</div>
-              </div>
-
-              <h2>
-                <div className="component-title ">
-                  Why do we do this
-                </div>
-              </h2>
-
-              <div className="description">
-                It’s really simple actually. We just love to combine our passion for code with our love for teaching. 
-                Coding is so much fun when doing it together.
-              </div>
-
-            </div>
-
-            <div className="component-usp-row">
-              <TeamCard
-                imgUrl="https://learntocodetogether.nl/assets/technology.svg" 
-                subTitle="Technology" 
-                description="We love to experiment and create awesome stuff from the comfort of our couch."
-              />
-              <TeamCard 
-                imgUrl="https://learntocodetogether.nl/assets/community.svg" 
-                subTitle="People"
-                description="It’s always fun to do things together, the excitement and the collaborations."
-                 />
-              <TeamCard 
-                imgUrl="https://learntocodetogether.nl/assets/personal-speed.svg" 
-                subTitle="Teaching"
-                description="We like to learn and to teach others the stuff we know."
-                 />
-            </div>
-          </div>
         </div>
 
-        <div className="section-line">
-          <div className="line "></div>
+
+        <div className="component-usp-row">
+          <InfoBlock blockTitle = {author} blockText={en} imgUrl="https://images.pexels.com/photos/3027216/pexels-photo-3027216.jpeg?cs=srgb&dl=photo-of-multi-coloured-hot-air-balloons-3027216.jpg&fm=jpg
+"/>
+        {/* map over data and turn it into InfoBlock components, pass data as props */}
         </div>
 
-        <div className="section-footer">
-          <img className="logo" src="https://learntocodetogether.nl/assets/logo.svg" />
-          <div className="title">Created by</div>
-          <div className="subtitle">Rein Op &#x27;t land &amp; Danny van der Jagt</div>
-          <div className="team-container">
-            <img className="team" src="https://learntocodetogether.nl/assets/danny&rein.svg" />
-          </div>
-        </div>
+        
+
+
+
+
+
+
 
       </div>
     );
