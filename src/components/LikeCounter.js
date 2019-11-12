@@ -18,6 +18,8 @@ export default class LikeCounter extends Component {
             <div>
                 <p>This post has <b>{this.state.numLikes}</b> likes!</p>
                 <button onClick={this.increment}>Like</button>
+                <button onClick={this.increment}>Like : {this.state.numLikes}</button>
+
             </div>
         );
     }
