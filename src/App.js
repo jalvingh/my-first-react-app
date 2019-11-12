@@ -13,13 +13,16 @@ export default class App extends React.Component {
   }
 
   async componentDidMount(){
-    // fetch data
+    this.getQuote();
+
+  }
+
+  getQuote = async() => {
     const response = await fetch("https://programming-quotes-api.herokuapp.com/quotes/random");
     const json = await response.json();
     // setState
     this.setState({itemData : json})
-  }
-
+};
 
   render() {
     // create an early exit if we dont have any data yet
@@ -47,19 +50,16 @@ export default class App extends React.Component {
           </div>
         </div>
 
+        {/* map over data and turn it into InfoBlock components, pass data as props */}
+        <div className="component-usp-row">
+          <InfoBlock blockTitle = {author} blockText={en} imgUrl="https://source.unsplash.com/random/800x600"/>
+        </div>
 
         <div className="component-usp-row">
-          <InfoBlock blockTitle = {author} blockText={en} imgUrl="https://images.pexels.com/photos/3027216/pexels-photo-3027216.jpeg?cs=srgb&dl=photo-of-multi-coloured-hot-air-balloons-3027216.jpg&fm=jpg
-"/>
-        {/* map over data and turn it into InfoBlock components, pass data as props */}
+          <button> Get new quote </button>
         </div>
 
         
-
-
-
-
-
 
 
       </div>
