@@ -1,6 +1,8 @@
 import React from "react";
 import TeamCard from "./components/TeamCard"
 import "./App.css";
+import "./Scoreboard.css";
+import "./Player.css"
 import SectionCard from "./components/SectionCard";
 import LikeCounter from "./components/LikeCounter";
 import AwesomeAnimals from "./components/AwesomeAnimals";
