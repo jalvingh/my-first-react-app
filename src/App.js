@@ -6,6 +6,7 @@ import LikeCounter from "./components/LikeCounter";
 import AwesomeAnimals from "./components/AwesomeAnimals";
 import InfoBlock from "./components/InfoBlock";
 import Title from "./components/Title";
+import Scoreboard from "./components/Scoreboard";
 
 export default class App extends React.Component {
   // define (initial) state of app
@@ -38,6 +39,10 @@ export default class App extends React.Component {
     // const {author, en } = this.state.itemData;
 
     return (
+
+      <main>
+        <Scoreboard></Scoreboard>
+      
 
 
       <div>
@@ -73,6 +78,8 @@ export default class App extends React.Component {
 
 
       </div>
+
+      </main>
     );
   }
 }
