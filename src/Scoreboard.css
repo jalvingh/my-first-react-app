@@ -1,9 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Orbitron");
-
-body, input {
-  font-family: "Orbitron", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-
 .scoreboard ul {
   width: 500px;
   margin: 30px auto;
@@ -14,3 +8,4 @@ body, input {
 .scoreboard h1 {
   text-align: center;
 }
+
